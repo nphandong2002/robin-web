@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
+import React from "react";
 
 import Header from "./header";
 import Navbar from "./navbar";
-import React from "react";
 
 function LayoutMain({ children }: { children: React.ReactNode }) {
   return (
