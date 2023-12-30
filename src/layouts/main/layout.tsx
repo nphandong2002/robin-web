@@ -1,3 +1,5 @@
+"use client";
+
 import { Box } from "@mui/material";
 import React from "react";
 
@@ -9,6 +11,7 @@ function LayoutMain({ children }: { children: React.ReactNode }) {
     <>
       <Box className="flex">
         <Navbar />
+
         <Box
           component="main"
           sx={{
