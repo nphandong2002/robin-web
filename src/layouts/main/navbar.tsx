@@ -16,11 +16,11 @@ const meos = Pacifico({
 function Navbar() {
   //dragg
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const bounds = { left: configRoot.navbarConfig.minWidth };
+  const bounds = { left: configRoot.navbarConfig.minWidth + configRoot.navbarConfig.minWidthDrag };
   const widthNarbar = useMemo(() => {
     let minWidth = configRoot.navbarConfig.minWidth;
-    position.x > 0 && (minWidth = position.x + 20);
-    return minWidth;
+    position.x > 0 && (minWidth = position.x);
+    return minWidth + configRoot.navbarConfig.minWidthDrag;
   }, [position]);
   const trackPos = (data: DraggableData) => {
     setPosition({ x: data.x, y: data.y });
@@ -48,8 +48,8 @@ function Navbar() {
         </Link>
         <NavbarMenu />
       </Box>
-      <Draggable bounds={bounds} axis="x" onDrag={(e, data) => trackPos(data)} defaultPosition={{ x: configRoot.navbarConfig.minWidth - 20, y: 0 }}>
-        <div className="h-screen w-[20px] cursor-ew-resize border-r-1 absolute"></div>
+      <Draggable bounds={bounds} axis="x" onDrag={(e, data) => trackPos(data)} defaultPosition={{ x: configRoot.navbarConfig.minWidth, y: 0 }}>
+        <div className={`h-screen w-[${configRoot.navbarConfig.minWidthDrag}px] cursor-ew-resize border-r-1 absolute`}></div>
       </Draggable>
     </Stack>
   );
