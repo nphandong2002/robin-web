@@ -1,23 +1,22 @@
-import Iconify from "@/components/iconify";
-import { configRoot } from "@/config";
-import { RouterLink } from "@/routes/components";
-import { usePathname } from "@/routes/hooks";
-import { paths } from "@/routes/paths";
-import { alpha, Link, ListItemButton, Stack, useTheme } from "@mui/material";
-import { tnavbarMenu } from "./type";
+import Iconify from '@/components/iconify';
+import { RouterLink } from '@/routes/components';
+import { usePathname } from '@/routes/hooks';
+import { paths } from '@/routes/paths';
+import { alpha, Link, ListItemButton, Stack, useTheme } from '@mui/material';
+import { tnavbarMenu } from './type';
 
 const navbarMenu: tnavbarMenu[] = [
   {
-    title: "Trang chủ",
+    title: 'Trang chủ',
     iconOn: <Iconify icon="material-symbols:home" />,
     iconOff: <Iconify icon="material-symbols:home-outline" />,
-    path: paths.home,
+    path: paths.private.home,
   },
   {
-    title: "Tin nhắn",
+    title: 'Tin nhắn',
     iconOn: <Iconify icon="mdi:message" />,
     iconOff: <Iconify icon="mdi:message-outline" />,
-    path: paths.message,
+    path: paths.private.message,
   },
 ];
 
@@ -26,9 +25,9 @@ function NavbarMenu() {
   const active = (path: string) => {
     const pathname = usePathname();
 
-    const checkPath = path.startsWith("#");
+    const checkPath = path.startsWith('#');
 
-    const currentPath = path === "/" ? "/" : `${path}`;
+    const currentPath = path === '/' ? '/' : `${path}`;
     return !checkPath && pathname === currentPath;
   };
 
@@ -41,9 +40,12 @@ function NavbarMenu() {
         sx={{
           color: theme.palette.text.secondary,
           ...(active && {
-            color: theme.palette.mode === "light" ? theme.palette.primary.main : theme.palette.primary.light,
+            color:
+              theme.palette.mode === 'light'
+                ? theme.palette.primary.main
+                : theme.palette.primary.light,
             backgroundColor: alpha(theme.palette.primary.main, 0.3),
-            "&:hover": {
+            '&:hover': {
               backgroundColor: alpha(theme.palette.primary.main, 0.16),
             },
           }),
@@ -59,7 +61,7 @@ function NavbarMenu() {
     <Stack spacing={0.5}>
       {navbarMenu.map((menu: tnavbarMenu) => (
         <Link
-          key={"navbar" + menu.path}
+          key={'navbar' + menu.path}
           component={RouterLink}
           href={menu.path}
           underline="none"
